@@ -17,7 +17,7 @@ async function addProject(event) {
     const thumbnail = document.querySelector('#thumbnail').value;
 
     try {
-        const response = await fetch('http://localhost:3000/api/projects', {
+        const response = await fetch(window.API_BASE_URL + '/api/projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ async function addProject(event) {
 
 async function loadWorks() {
     try {
-        const response = await fetch('http://localhost:3000/api/projects');
+        const response = await fetch(window.API_BASE_URL + '/api/projects');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -190,7 +190,7 @@ async function deleteWork(id) {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/projects/${id}`, {
+        const response = await fetch(window.API_BASE_URL + `/api/projects/${id}`, {
             method: 'DELETE',
             headers: {
                 'x-admin-api-key': window.ADMIN_API_KEY_CLIENT_SIDE // 여기에 실제 ADMIN_API_KEY를 입력하세요.
@@ -257,7 +257,7 @@ async function saveWork(id) {
     });
 
     try {
-        const response = await fetch(`http://localhost:3000/api/projects/${id}`, {
+        const response = await fetch(window.API_BASE_URL + `/api/projects/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -278,7 +278,7 @@ async function saveWork(id) {
 
 async function moveProject(id, direction) {
     try {
-        const response = await fetch(`http://localhost:3000/api/projects/${id}/move`, {
+        const response = await fetch(`/api/projects/${id}/move`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

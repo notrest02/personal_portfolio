@@ -160,7 +160,7 @@ const App = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/projects', { cache: 'no-store' });
+                const response = await fetch('/api/projects', { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

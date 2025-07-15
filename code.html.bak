@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editable Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap');
+      body {
+        font-family: 'IBM Plex Sans KR', sans-serif; /* IBM Plex Sans KR 적용 */
+        margin: 0;
+        padding: 0;
+        background-color: #1A1A1A; /* 배경색 변경 */
+        color: #E0E0E0; /* 글씨색 변경 */
+        line-height: 1.6;
+      }
+      .font-fira { font-family: 'Fira Code', monospace; } /* Keep for code snippets if any */
+
+      /* Overall Layout */
+      .portfolio-container {
+        display: flex;
+        min-height: 100vh;
+        background-color: #1A1A1A; /* 배경색 변경 */
+        padding-top: 3%; /* Add top margin */
+        padding-left: 10%; /* Changed from 10% to 9% */
+        padding-right: 1%; /* Keep 1% */
+        box-sizing: border-box;
+      }
+
+      /* Left Sidebar */
+      aside {
+        flex: 0 0 16%; /* Changed from 15% to 16% */
+        padding: 30px;
+        background-color: transparent; /* Unified background */
+        display: flex;
+        flex-direction: column;
+        margin-right: 5%; /* Keep 5% gap */
+      }
+      aside h1 {
+        font-size: 2rem; /* Largest font size for ANXION_ */
+        font-weight: bold;
+        margin-bottom: 10px; /* Reduced margin */
+        color: #FFFFFF;
+        text-transform: uppercase;
+      }
+      aside h2 {
+        font-size: 1.0rem; /* Smaller than h1 */
+        font-weight: bold;
+        margin-top: 10px; /* Reduced margin */
+        margin-bottom: 5px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-bottom: none; /* Remove border */
+        padding-bottom: 0;
+      }
+      aside nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      aside nav li a {
+        display: block;
+        padding: 5px 0;
+        color: rgba(224, 224, 224, 0.5); /* 글씨색의 50% 투명도 */
+        text-decoration: none;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        transition: color 0.2s ease;
+      }
+      aside nav li a:hover {
+        color: #FFFFFF; /* White on hover */
+      }
+      aside nav li a.active {
+        color: #FFFFFF; /* White when active */
+      }
+      aside footer {
+        margin-top: 30px; /* Add space above the separator */
+        padding-top: 20px;
+        border-top: 1px solid #444444; /* 구분선 색상 변경 */
+        text-align: left;
+      }
+      aside footer .social-icons a {
+        color: #FFFFFF;
+        font-size: 1.0rem;
+        margin: 0 0px;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      aside footer .social-icons a:hover {
+        color: #AAAAAA;
+      }
+
+      .contact-email {
+        font-size: 0.9rem;
+        color: #CCCCCC;
+        margin-bottom: 8px;
+      }
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      .social-icons a i {
+        margin-right: 10px;
+      }
+      .social-link-name {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* Right Content Area */
+      main {
+        flex: 0 0 69%; /* Keep 69% */
+        padding: 40px;
+        overflow-y: auto; /* Scrollable */
+        background-color: transparent; /* Unified background */
+        display: flex; /* Use flexbox for alignment */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center horizontally */
+      }
+
+      /* Project Grid */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Fixed 3-column layout */
+        gap: 30px; /* Spacing between grid items */
+        width: 100%; /* Ensure it fills the main container */
+      }
+      .grid-item {
+        background-color: transparent; /* Unified background */
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+        /* No shadows, flat design */
+      }
+      .grid-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .grid-item-content {
+        padding: 6px 15px 6px 0; /* Top, Right, Bottom: 15px; Left: 0px */
+        text-align: left; /* Left align content */
+      }
+      .grid-item-content h3 {
+        font-size: 1.0rem;
+        font-weight: 500; /* Changed from semibold to medium */
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        color: #FFFFFF;
+      }
+      .grid-item-content p {
+        font-size: 0.85rem;
+        color: #CCCCCC;
+      }
+
+      /* Project Details */
+      .project-details-container {
+        background-color: transparent; /* Unified background */
+        padding: 30px;
+        border-radius: 5px;
+        text-align: center; /* Center align content */
+      }
+      .project-details-container img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .project-details-container h3 {
+        font-size: 2rem; /* 크기 살짝 줄임 */
+        font-weight: 500; /* 굵기 한 단계 밑으로 */
+        margin-bottom: 10px;
+        color: #FFFFFF;
+      }
+      /* 프로젝트 설명 (p) */
+      .project-details-container p {
+        font-size: 0.95rem; /* 크기 살짝 줄임 */
+        color: #CCCCCC;
+        margin-bottom: 15px;
+      }
+      .tool-badge {
+        background-color: #333333; /* Neutral gray */
+        color: #FFFFFF;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+      }
+      .back-button {
+        background-color: #333333; /* Neutral gray */
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        margin-bottom: 20px;
+      }
+      .back-button:hover {
+        background-color: #555555; /* Darker gray on hover */
+      }
+
+      /* Back to Top Link */
+      .back-to-top {
+        display: block;
+        text-align: center;
+        margin-top: 50px;
+        color: #CCCCCC;
+        text-decoration: none;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        transition: color 0.2s ease;
+      }
+      .back-to-top:hover {
+        color: #FFFFFF;
+      }
+
+      /* Minimalist scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #000000; }
+      ::-webkit-scrollbar-thumb { background: #333333; }
+      ::-webkit-scrollbar-thumb:hover { background: #555555; }
+
+      /* Fade and move animations */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes moveIn {
+        from { transform: translateY(10px); }
+        to { transform: translateY(0); }
+      }
+      .fade-in {
+        animation: fadeIn 0.2s ease-out forwards, moveIn 0.3s ease-out forwards;
+      }
+
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      @keyframes moveOut {
+        from { transform: translateY(0); }
+        to { transform: translateY(10px); }
+      }
+      .fade-out {
+        animation: fadeOut 0.2s ease-out forwards, moveOut 0.3s ease-out forwards;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./code.js"></script>
+  </body>
+</html>

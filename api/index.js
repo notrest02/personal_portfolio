@@ -36,6 +36,10 @@ const authenticateAdmin = (req, res, next) => {
 
 // CORS 설정: 모든 도메인에서의 요청을 허용 (개발용)
 app.use(cors());
+app.use((req, res, next) => {
+  console.log(`[Vercel] Incoming request: ${req.method} ${req.url}`);
+  next();
+});
 app.use(express.json()); // JSON 요청 본문 파싱
 
 // 간단한 테스트 API 엔드포인트

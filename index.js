@@ -160,9 +160,7 @@ const App = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-                const fetchUrl = isLocal ? window.API_BASE_URL + '/api/projects' : '/api/server/projects';
-                const response = await fetch(fetchUrl, { cache: 'no-store' });
+                const response = await fetch(window.API_BASE_URL + '/api/projects', { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

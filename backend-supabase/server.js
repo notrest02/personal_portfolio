@@ -234,12 +234,14 @@ app.post('/api/projects/:id/move', authenticateAdmin, async (req, res) => {
         res.status(200).json({ message: 'Project order updated successfully' });
 
     } catch (err) {
-        console.error('[moveProject] Server error:', err);
+        console.error('Server error:', err);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
 // 서버 시작
-app.listen(port, () => {
-    console.log(`Backend server listening at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Backend server listening at http://localhost:${port}`);
+// });
+
+module.exports = app;

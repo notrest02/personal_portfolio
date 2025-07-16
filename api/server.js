@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 });
 
 // Supabase에서 프로젝트 데이터를 가져오는 API 엔드포인트 (읽기 - anon key 사용)
-app.get('/projects', async (req, res) => {
+app.get('/api/projects', async (req, res) => {
     try {
         const { data, error } = await supabase
             .from('projects') // 'projects' 테이블에서 데이터를 가져옵니다.
@@ -78,7 +78,7 @@ app.get('/projects', async (req, res) => {
 });
 
 // Supabase에 프로젝트 데이터를 추가하는 API 엔드포인트 (쓰기 - service_role key 사용, 인증 필요)
-app.post('/projects', authenticateAdmin, async (req, res) => {
+app.post('/api/projects', authenticateAdmin, async (req, res) => {
     try {
         // Get the current maximum order value
         const { data: maxOrderData, error: maxOrderError } = await supabaseAdmin
@@ -114,7 +114,7 @@ app.post('/projects', authenticateAdmin, async (req, res) => {
 });
 
 // Supabase에서 프로젝트 데이터를 수정하는 API 엔드포인트
-app.put('/projects/:id', authenticateAdmin, async (req, res) => {
+app.put('/api/projects/:id', authenticateAdmin, async (req, res) => {
     try {
         const { data, error } = await supabaseAdmin
             .from('projects')
@@ -135,7 +135,7 @@ app.put('/projects/:id', authenticateAdmin, async (req, res) => {
 });
 
 // Supabase에서 프로젝트 데이터를 삭제하는 API 엔드포인트
-app.delete('/projects/:id', authenticateAdmin, async (req, res) => {
+app.delete('/api/projects/:id', authenticateAdmin, async (req, res) => {
     try {
         const { error } = await supabaseAdmin
             .from('projects')
@@ -155,7 +155,7 @@ app.delete('/projects/:id', authenticateAdmin, async (req, res) => {
 });
 
 // Supabase에서 프로젝트 순서를 변경하는 API 엔드포인트
-app.post('/projects/:id/move', authenticateAdmin, async (req, res) => {
+app.post('/api/projects/:id/move', authenticateAdmin, async (req, res) => {
     const { id } = req.params;
     const { direction } = req.body; // 'up' or 'down'
 

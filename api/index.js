@@ -150,7 +150,7 @@ app.delete('/projects/:id', authenticateAdmin, async (req, res) => {
 });
 
 // Supabase에서 프로젝트 순서를 변경하는 API 엔드포인트
-app.post('/projects/:id/move', authenticateAdmin, async (req, res) => {
+app.post('/api/projects/:id/move', authenticateAdmin, async (req, res) => {
     const { id } = req.params;
     const { direction } = req.body; // 'up' or 'down'
 

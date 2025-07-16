@@ -13,9 +13,22 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY; // .env 파일에 추가할 관리자 API 키
 
-if (!supabaseUrl || !supabaseAnonKey || !supabaseServiceRoleKey || !ADMIN_API_KEY) {
-    console.error('Supabase URL, Anon Key, Service Role Key, or Admin API Key is missing in .env file.');
-    process.exit(1);
+// 환경 변수 검사 및 오류 처리
+const requiredEnvVars = ['SUPABASE_URL', 'SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY', 'ADMIN_API_KEY'];
+const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+if (missingEnvVars.length > 0) {
+    const errorMessage = `Server configuration error: The following environment variables are missing: ${missingEnvVars.join(', ')}`;
+    console.error(errorMessage);
+    // 모든 요청에 대해 에러를 반환하는 미들웨어를 등록
+    app.use((req, res, next) => {
+        res.status(500).json({ 
+            error: "Internal Server Error",
+            message: errorMessage 
+        });
+    });
+    module.exports = app; // 앱을 내보내서 Vercel이 오류를 렌더링하게 함
+    return; // 이후 코드 실행 방지
 }
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);

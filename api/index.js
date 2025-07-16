@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 });
 
 // 최소 기능 테스트 엔드포인트
-app.get('/projects', (req, res) => {
+app.get('/api/projects', (req, res) => {
     res.status(200).send('Hello from Vercel API!');
 });
 

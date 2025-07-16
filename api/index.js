@@ -1,13 +1,4 @@
-const path = require('path');
-const dotenvResult = require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
-if (dotenvResult.error) {
-  console.error('Error loading .env file:', dotenvResult.error);
-}
-
-console.log('Parsed .env file:', dotenvResult.parsed);
-console.log('process.env.SUPABASE_URL:', process.env.SUPABASE_URL);
-console.log('process.env.SUPABASE_ANON_KEY:', process.env.SUPABASE_ANON_KEY ? 'Loaded' : 'Not Loaded');
 
 const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
@@ -239,9 +230,6 @@ app.post('/projects/:id/move', authenticateAdmin, async (req, res) => {
     }
 });
 
-// 서버 시작
-// app.listen(port, () => {
-//     console.log(`Backend server listening at http://localhost:${port}`);
-// });
+
 
 module.exports = app;

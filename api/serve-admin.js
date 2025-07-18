@@ -23,7 +23,7 @@ module.exports = (req, res) => {
         }
 
         // 토큰이 유효하면 admin.html 파일 제공
-        const adminHtmlPath = path.resolve(process.cwd(), 'admin.html');
+        const adminHtmlPath = path.resolve(process.cwd(), 'api/admin.html');
 
         fs.readFile(adminHtmlPath, 'utf8', (err, data) => {
             if (err) {

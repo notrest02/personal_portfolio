@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/admin.html",
+      "destination": "/api/serve-admin"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/index"
     }

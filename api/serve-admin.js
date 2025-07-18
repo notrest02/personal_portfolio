@@ -22,12 +22,12 @@ module.exports = (req, res) => {
             return res.redirect('/login.html');
         }
 
-        // 토큰이 유효하면 admin.html 파일 제공
-        const adminHtmlPath = path.resolve(process.cwd(), 'admin.html');
+        // 토큰이 유효하면 _admin.html 파일 제공
+        const adminHtmlPath = path.resolve(process.cwd(), '_admin.html');
 
         fs.readFile(adminHtmlPath, 'utf8', (err, data) => {
             if (err) {
-                console.error('admin.html 파일 읽기 오류:', err);
+                console.error('_admin.html 파일 읽기 오류:', err);
                 return res.status(500).send('어드민 페이지를 불러오는 데 실패했습니다.');
             }
             res.setHeader('Content-Type', 'text/html');

@@ -254,6 +254,74 @@
       .fade-out {
         animation: fadeOut 0.2s ease-out forwards, moveOut 0.3s ease-out forwards;
       }
+
+      /* Responsive Design for Mobile */
+      @media (max-width: 768px) {
+        .portfolio-container {
+          flex-direction: column; /* Stack sidebar and main content */
+          padding-top: 5%;
+          padding-left: 5%;
+          padding-right: 5%;
+        }
+
+        aside {
+          flex: 0 0 100%; /* Full width for sidebar */
+          margin-right: 0;
+          padding: 20px;
+          text-align: center; /* Center align header */
+        }
+
+        aside h1 {
+          font-size: 1.8rem;
+        }
+
+        aside h2 {
+          font-size: 0.9rem;
+        }
+        
+        aside nav ul {
+            display: flex; /* Make nav horizontal */
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: center; /* Center nav items */
+            gap: 15px; /* Add space between items */
+        }
+
+        aside nav li a {
+            padding: 8px 12px;
+            background-color: #2a2a2a;
+            border-radius: 5px;
+        }
+
+        aside footer {
+            text-align: center;
+        }
+
+        .social-icons {
+            justify-content: center; /* Center social icons */
+        }
+
+        main {
+          flex: 0 0 100%; /* Full width for main content */
+          padding: 20px;
+        }
+
+        .grid-container {
+          grid-template-columns: repeat(1, 1fr); /* Single column for projects */
+          gap: 20px;
+        }
+
+        .grid-item-content h3 {
+            font-size: 0.9rem;
+        }
+
+        .project-details-container h3 {
+            font-size: 1.5rem;
+        }
+
+        .project-details-container p {
+            font-size: 0.9rem;
+        }
+      }
     </style>
   <script type="importmap">
 {

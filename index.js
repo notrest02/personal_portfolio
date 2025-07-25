@@ -151,6 +151,21 @@ const ProjectGrid = ({ projects, onProjectSelect }) => {
     );
 };
 
+const ContactInfo = () => {
+    return React.createElement('footer', { className: 'contact-info' },
+        React.createElement('h2', { className: '' }, 'CONTACT'),
+        React.createElement('p', { className: 'contact-email' }, portfolioInfo.contact.email),
+        React.createElement('div', { className: 'social-icons' },
+            portfolioInfo.contact.links.map(link => (
+                React.createElement('a', { key: link.name, href: link.url, target: '_blank', rel: 'noopener noreferrer' },
+                    React.createElement('i', { className: `fab fa-${link.name.toLowerCase()}` }),
+                    React.createElement('span', { className: 'social-link-name' }, link.name)
+                )
+            ))
+        )
+    );
+};
+
 const App = () => {
     const [projects, setProjects] = useState([]);
     const [selectedProject, setSelectedProject] = useState(null);
@@ -237,28 +252,8 @@ const App = () => {
                     ))
                 )
             ),
-            React.createElement('footer', { className: '' },
-                React.createElement('h2', {
-                    className: ''
-                }, 'CONTACT'),
-                React.createElement('p', { className: 'contact-email' }, portfolioInfo.contact.email), // Added email
-                React.createElement('div', {
-                    className: 'social-icons'
-                },
-                    portfolioInfo.contact.links.map(link => (
-                        React.createElement('a',
-                            {
-                                key: link.name,
-                                href: link.url,
-                                target: '_blank',
-                                rel: 'noopener noreferrer',
-                                className: ''
-                            },
-                            React.createElement('i', { className: `fab fa-${link.name.toLowerCase()}` }),
-                            React.createElement('span', { className: 'social-link-name' }, link.name) // Added link name
-                        )
-                    ))
-                )
+            React.createElement('div', { className: 'desktop-contact-info' },
+                React.createElement(ContactInfo)
             )
         ),
         React.createElement('main', {
@@ -278,7 +273,10 @@ const App = () => {
                 href: '#',
                 onClick: scrollToTop,
                 className: 'back-to-top'
-            }, 'Back to Top')
+            }, 'Back to Top'),
+            React.createElement('div', { className: 'mobile-contact-info' },
+                React.createElement(ContactInfo)
+            )
         )
     );
 };
